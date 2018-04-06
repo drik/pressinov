@@ -3,6 +3,11 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import "reflect-metadata";
+import {createConnection} from "ionic-orm";
+
+import {Client} from "../entities/Client";
+
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
@@ -33,6 +38,19 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      createConnection({
+          driver: {
+              type: "websql",
+              database: "test"
+          },
+          entities: [
+              Client
+          ],
+          autoSchemaSync: true,
+      }).then(connection => {
+          // here you can start to work with your entities
+      });
     });
   }
 
