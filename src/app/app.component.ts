@@ -47,9 +47,28 @@ export class MyApp {
           entities: [
               Client
           ],
+          logging: {
+            logFailedQueryError: true,
+            logQueries: true,
+            logSchemaCreation: true,
+            logOnlyFailedQueries: true
+          },
           autoSchemaSync: true,
       }).then(connection => {
-          // here you can start to work with your entities
+          let client = new Client();
+          client.fullName = "Cédric Kodjo KOKOU-N'GONOU";
+          client.mobilePhone = "+230 5801 1376";
+          client.address = "Lomé, Togo";
+          
+          let clientRepository = connection.getRepository(Client);
+          clientRepository.persist(client).then(persistedClient => {
+                console.log("Client has been saved");
+                console.log(persistedClient);
+          }, error => {
+            console.error(error);
+          });
+          
+          console.log(client);
       });
     });
   }
