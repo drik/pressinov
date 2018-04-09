@@ -1,6 +1,8 @@
-import {Table, Column, PrimaryGeneratedColumn} from "ionic-orm";
+import {Entity, Column, PrimaryGeneratedColumn, OneToMany} from "typeorm";
 
-@Table()
+import {DepotArticle} from "../entities/depot.article";
+
+@Entity()
 export class Client {
 
     @PrimaryGeneratedColumn()
@@ -14,4 +16,7 @@ export class Client {
 
     @Column()
     address: string;
+    
+    @OneToMany(type => DepotArticle, depotArticle => depotArticle.client) 
+    depotsArticles: DepotArticle[];
 }

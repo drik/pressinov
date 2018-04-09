@@ -1,7 +1,7 @@
-import {Table, Column, PrimaryGeneratedColumn, ManyToOne} from "ionic-orm";
+import {Entity, Column, PrimaryGeneratedColumn, ManyToOne} from "typeorm";
 import {DepotArticle} from "../entities/depot.article";
 
-@Table()
+@Entity()
 export class RetraitArticle {
 
     @PrimaryGeneratedColumn()

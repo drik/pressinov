@@ -1,6 +1,6 @@
-import {Table, Column, PrimaryGeneratedColumn} from "ionic-orm";
+import {Entity, Column, PrimaryGeneratedColumn} from "typeorm";
 
-@Table()
+@Entity()
 export class TypeArticle {
 
     @PrimaryGeneratedColumn()
